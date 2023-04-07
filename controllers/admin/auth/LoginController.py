@@ -16,9 +16,10 @@ def login(request):
     try:
         usuario = Admins.get(Admins.username == username, Admins.password == password)
         session['usuario'] = usuario.password
-        return redirect(url_for('dashboard'))
+        return 'logou'
     except:
-        return redirect(url_for('login'))
+        return 'nao logou'
+        # return redirect(url_for('loginIndex'))
     
     
     
