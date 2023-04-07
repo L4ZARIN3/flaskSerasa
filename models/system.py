@@ -1,6 +1,6 @@
 from peewee import *
 
-db = SqliteDatabase('../databases/system.db')
+db = SqliteDatabase('databases/system.db')
 
 
 class Admins(Model):
