@@ -6,21 +6,19 @@ from controllers.serasaEmailController import serasaEmail
 from controllers.serasaTelefoneController import serasaTelefone
 
 
-
-
 def route(app):
     @app.route('/SerasaCpf', methods=['GET'])
     def cpf():
-        return serasaCpf(request);
+        return serasaCpf(request)
 
     @app.route('/SerasaNome', methods=['GET'])
     def nome():
-        return serasaNome(request.args.get('nome'))
+        return serasaNome(request)
 
     @app.route('/SerasaTelefone', methods=['GET'])
     def telefone():
-        return serasaTelefone()
+        return serasaTelefone(request)
 
     @app.route('/SerasaEmail', methods=['GET'])
-    def email(email):
-        return serasaEmail(email)
+    def email():
+        return serasaEmail(request)
