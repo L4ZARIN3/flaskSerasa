@@ -6,15 +6,18 @@ from models.srs_telefones import SRS_TELEFONES
 
 from requests.cpfRequest import serasaCpfRequest
 
+
 def serasaCpf(request):
     form = serasaCpfRequest(request.args)
     if not form.validate():
         return jsonify(form.errors), 400
-   
-    contato = SRS_CONTATOS.select().where(SRS_CONTATOS.CPF == request.args.get('cpf')).first()
+
+    cpf = request.args.get('cpf')
+    contato = SRS_CONTATOS.select().where(SRS_CONTATOS.CPF == cpf).first()
     if contato:
         contato_dict = {
             'status': True,
+            'search': cpf,
             'result': {
                 'CONTATOS_ID': contato.CONTATOS_ID,
                 'CPF': contato.CPF,
@@ -70,4 +73,4 @@ def serasaCpf(request):
 
         return jsonify(contato_dict)
     else:
-        return jsonify({'status': False, 'msg': 'Contato não encontrado.'}), 404
+        return jsonify({'status': False, 'msg': 'Cpf nao encontrado.'}), 404

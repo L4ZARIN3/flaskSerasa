@@ -37,4 +37,4 @@ def serasaEmail(request):
 
         return jsonify(mailOwners)
     else:
-        return 'nada encontrado'
+        return jsonify({'status': False, 'msg': 'Email nao encontrado.'}), 404

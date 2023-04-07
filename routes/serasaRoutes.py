@@ -1,12 +1,11 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request
 
 from controllers.serasaCpfController import serasaCpf
 from controllers.serasaNomeController import serasaNome
 from controllers.serasaEmailController import serasaEmail
 from controllers.serasaTelefoneController import serasaTelefone
-
-
-def route(app):
+    
+def SerasaBase(app):
     @app.route('/SerasaCpf', methods=['GET'])
     def cpf():
         return serasaCpf(request)

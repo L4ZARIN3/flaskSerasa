@@ -25,7 +25,6 @@ def serasaTelefone():
                 'TITULO_ELEITOR': user.TITULO_ELEITOR
             })
 
+        return jsonify(contactUsers)
     else:
         return jsonify({'status': False, 'msg': 'Contato não encontrado.'}), 404
-
-    return contactUsers
