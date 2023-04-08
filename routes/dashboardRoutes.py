@@ -1,14 +1,17 @@
-from flask import Flask, request
+from flask import request
 
-from controllers.admin.auth.LoginController import index, login
+from middlewares.authMiddleware import login_required
+from controllers.admin.DashboardController import index, create
 
 
 def DashboardRoutes(app):
 
-    @app.route('/login', methods=['GET'], endpoint='indexLogin')
-    def loginIndex():
+    @app.route('/dashboard', methods=['get'], endpoint='dashboardIndex')
+    @login_required
+    def dashboard():
         return index()
 
-    @app.route('/login', methods=['POST'], endpoint='makeLogin')
-    def loginMake():
-        return login(request)
+    @app.route('/createClient', methods=['post'], endpoint='createClient')
+    @login_required
+    def createDashboard():
+        return create(request)

@@ -1,4 +1,4 @@
-from wtforms import Form, StringField, TextAreaField, validators
+from wtforms import Form, StringField, validators
 
 
 class serasaEmailRequest(Form):

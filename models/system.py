@@ -14,6 +14,7 @@ class Admins(Model):
 class Tokens(Model):
     id = PrimaryKeyField(unique=True)
     admin_id = ForeignKeyField(Admins, backref='Tokens')
+    username = CharField()
     token = CharField(unique=True)
     plan = DateTimeField()
 

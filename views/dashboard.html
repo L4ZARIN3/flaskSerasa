@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Usuários</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1,
+        h3 {
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 24px;
+            margin-top: 30px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 30px 0;
+        }
+
+        form label {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+        form input {
+            padding: 10px;
+            margin-bottom: 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: none;
+            box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+        }
+
+        form button {
+            padding: 10px 20px;
+            font-size: 18px;
+            color: white;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+            transition: all 0.2s ease-in-out;
+        }
+
+        form button:hover {
+            background-color: #3e8e41;
+        }
+
+        table {
+            margin: 0 auto;
+            border-collapse: collapse;
+            width: 80%;
+        }
+
+        table th,
+        table td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        table th {
+            background-color: #f2f2f2;
+            font-size: 18px;
+        }
+
+        li {
+            text-align: center;
+            font-size: 24px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h3>CRIAR USUARIO</h3>
+    <form method="POST" action="{{ url_for('createClient') }}">
+        <label>USERNAME</label>
+        <input type="text" name="username" autocomplete="off">
+        <label>PLANO</label>
+        <input type="datetime-local" name="plan">
+        <button type="submit">CRIAR</button>
+    </form>
+
+    {% if clients %}
+    <h1>CLIENTES</h1>
+    <table>
+        <tr>
+            <th>USERNAME</th>
+            <th>TOKEN</th>
+            <th>PLANO</th>
+        </tr>
+        {% for client in clients %}
+        <tr>
+            <td>{{ client.username }}</td>
+            <td>{{ client.token }}</td>
+            <td>{{ client.plan }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+
+    <li>SEM CLIENTES CADASTRADOS</li>
+    {% endif %}
+
+
+</body>
+
+</html>
