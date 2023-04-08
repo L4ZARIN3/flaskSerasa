@@ -1,4 +1,4 @@
-from flask import render_template, jsonify, session
+from flask import render_template, jsonify, session, redirect, url_for
 from models.system import Tokens
 import uuid
 
@@ -19,5 +19,5 @@ def create(request):
     client = Tokens(admin_id=session['user_id'], username=username, token=uuid.uuid4(), plan=plan)
     client.save()
 
-    
+    return redirect(url_for('dashboardIndex'))  
     

@@ -1,7 +1,9 @@
 from flask import request
 
-from middlewares.authMiddleware import login_required
 from controllers.admin.DashboardController import index, create
+from controllers.admin.EditClient import editIndex, makeEdit
+
+from middlewares.authMiddleware import login_required
 
 
 def DashboardRoutes(app):
@@ -15,3 +17,13 @@ def DashboardRoutes(app):
     @login_required
     def createDashboard():
         return create(request)
+
+    @app.route('/edit/<int:id>', methods=['get'], endpoint='editClient')
+    @login_required
+    def editClientdashboard(id):
+        return editIndex(id)
+
+    @app.route('/edit/make', methods=['post'], endpoint='editClientMake')
+    @login_required
+    def editClientMake():
+        return makeEdit(request)

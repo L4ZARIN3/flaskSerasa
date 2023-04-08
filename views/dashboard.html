@@ -82,6 +82,25 @@
             font-size: 24px;
             margin-top: 30px;
         }
+
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            color: #fff;
+            background-color: #3b9dff;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        .button:hover {
+            background-color: #045fe9;
+        }
     </style>
 </head>
 
@@ -103,12 +122,14 @@
             <th>USERNAME</th>
             <th>TOKEN</th>
             <th>PLANO</th>
+            <th>EDITAR</th>
         </tr>
         {% for client in clients %}
         <tr>
             <td>{{ client.username }}</td>
             <td>{{ client.token }}</td>
             <td>{{ client.plan }}</td>
+            <td><a class="button" href="{{ url_for('editClient', id=client.id) }}">EDITAR</a></td>
         </tr>
         {% endfor %}
     </table>

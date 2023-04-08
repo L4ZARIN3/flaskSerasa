@@ -4,9 +4,12 @@ from controllers.serasaCpfController import serasaCpf
 from controllers.serasaNomeController import serasaNome
 from controllers.serasaEmailController import serasaEmail
 from controllers.serasaTelefoneController import serasaTelefone
-    
+
+from middlewares.clientMiddleware import client
+
 def SerasaBase(app):
     @app.route('/SerasaCpf', methods=['GET'])
+    @client
     def cpf():
         return serasaCpf(request)
 

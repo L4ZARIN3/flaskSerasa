@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>CLIENTE: {{ client.username.upper() }}</title>
+</head>
+
+<body>
+
+    <h3>EDITAR CLIENTE</h3>
+    <form method="POST" action="{{ url_for('editClientMake') }}">
+        <input type="hidden" name="id" value="{{ client.id }}">
+        <label>USERNAME</label>
+        <input type="text" name="username" value="{{ client.username }}" autocomplete="off">
+        <label>PLANO</label>
+        <input type="datetime-local" value="{{ client.plan }}" name="plan">
+        <button type="submit">EDITAR</button>
+    </form>
+
+</body>
+
+</html>
