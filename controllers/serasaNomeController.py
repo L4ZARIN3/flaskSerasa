@@ -3,7 +3,8 @@ from flask import jsonify
 from models.srs_contatos import SRS_CONTATOS
 
 
-def serasaNome(nome):
+def serasaNome(request):
+    nome = request.args.get("nome")
     peoples = SRS_CONTATOS.select().where(SRS_CONTATOS.NOME == nome.upper())
 
     if peoples:

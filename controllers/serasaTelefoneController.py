@@ -3,10 +3,18 @@ from flask import jsonify
 from models.srs_telefones import SRS_TELEFONES
 from models.srs_contatos import SRS_CONTATOS
 
+from requests.telefoneRequest import serasaTelefoneRequest
 
-def serasaTelefone():
+
+def serasaTelefone(request):
+    form = serasaTelefoneRequest(request.args)
+    if not form.validate():
+        return jsonify(form.errors), 400
+    
+    telefone = request.args.get('telefone')
+
     UserPhones = SRS_TELEFONES.select().where(
-        SRS_TELEFONES.DDD == '11').where(SRS_TELEFONES.TELEFONE == '972146724')
+        SRS_TELEFONES.DDD == telefone[:2]).where(SRS_TELEFONES.TELEFONE == telefone[2:])
     phoneUsers = []
     if UserPhones:
         for phone in UserPhones:
